@@ -1,25 +1,34 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './index.scss'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import { createTheme, ThemeProvider } from '@mui/material'
+import AddTaskForm from './components/AddTaskForm';
+import ToDoList from './components/ToDoList';
+
+const theme = createTheme();
+
+theme.typography.h1 = {
+  fontSize: '4rem',
+  fontWeight: 'normal',
+};
+
+theme.typography.h2 = {
+  fontSize: '1rem',
+  fontWeight: 'bold',
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Header />
+      <main style={{ minHeight: '100vh' }}>
+        <AddTaskForm />
+        <ToDoList />
+      </main>
+      <Footer />
+    </ThemeProvider>
   );
 }
 
