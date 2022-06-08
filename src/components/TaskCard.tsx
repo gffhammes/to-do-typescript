@@ -12,9 +12,9 @@ type Props = {
 
 const TaskCard = ({ task, handleDelete, handleOpenDialog }: Props) => {
   return (
-    <Stack component={Paper} direction='row' elevation={5} sx={{ p: 4, pr: 2 }} alignItems='center' justifyContent='space-between'>
+    <Stack component={Paper} direction='row' elevation={5} sx={{ p: 4, pr: 3 }} alignItems='center' justifyContent='space-between'>
       <Box>        
-        <Typography variant='h4'>{task.title}</Typography>
+        <Typography variant='h4' fontSize={24} fontWeight={500} >{task.title}</Typography>
         <Typography>{task.description}</Typography>
         <Typography>Dificuldade: {task.difficult}</Typography>
       </Box>

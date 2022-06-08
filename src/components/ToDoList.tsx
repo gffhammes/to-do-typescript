@@ -6,7 +6,7 @@ import TaskCard from './TaskCard';
 interface IToDoListProps {
   taskList: ITask[];
   handleDelete(taskId: number): void;
-  handleOpenDialog(taskId: ITask): void;
+  handleOpenDialog(task: ITask): void;
 }
 
 const ToDoList = ({ taskList, handleDelete, handleOpenDialog }: IToDoListProps) => {

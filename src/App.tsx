@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './index.scss'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components/Commons/Header'
+import Footer from './components/Commons/Footer'
 import { createTheme, ThemeProvider } from '@mui/material'
-import AddTaskForm from './components/AddTaskForm';
+import AddTaskForm from './components/Forms/AddTaskForm';
 import ToDoList from './components/ToDoList';
 import { ITask } from './interfaces/Task';
-import EditTaskDialog from './components/EditTaskDialog';
+import EditTaskDialog from './components/Forms/EditTaskDialog';
 
 const theme = createTheme();
 
@@ -35,8 +34,8 @@ function App() {
     setTaskList(taskList => [ ...taskList, newTask ]);
   }
 
-  const handleOpenDialog = (taskId: ITask) => {
-    setSelectedTask(taskId)
+  const handleOpenDialog = (task: ITask) => {
+    setSelectedTask(task)
     setOpenDialog(true)
   }
   const handleCloseDialog = () => setOpenDialog(false)
@@ -45,9 +44,13 @@ function App() {
     setTaskList(taskList => taskList.filter(task => task.id !== taskId))
   }
 
+  const handleEdit = (newTask: ITask) => {
+    setTaskList(taskList => taskList.map(task => task.id === newTask.id ? newTask : task))
+  }
+
   return (
     <ThemeProvider theme={theme}>
-      <EditTaskDialog open={openDialog} handleClose={handleCloseDialog} task={selectedTask} />
+      <EditTaskDialog open={openDialog} handleClose={handleCloseDialog} task={selectedTask} handleEdit={handleEdit} />
       <Header />
       <main style={{ minHeight: '100vh' }}>
         <AddTaskForm handleAddTask={handleAddTask} />

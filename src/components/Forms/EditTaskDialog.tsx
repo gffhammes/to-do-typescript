@@ -1,20 +1,18 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { ITask } from '../interfaces/Task';
+import { ITask } from '../../interfaces/Task';
 import TaskForm from './TaskForm';
 
 interface IEditTaskDialogProps {
   open: boolean;
   handleClose(): void;
+  handleEdit(newTask: ITask): void;
   task: ITask;
 }
 
-export default function EditTaskDialog({ open, handleClose, task }: IEditTaskDialogProps) {
+export default function EditTaskDialog({ open, handleClose, task, handleEdit }: IEditTaskDialogProps) {
   return (
     <Dialog
       open={open}
@@ -26,7 +24,7 @@ export default function EditTaskDialog({ open, handleClose, task }: IEditTaskDia
         Editar tarefa
       </DialogTitle>
       <DialogContent>
-        <TaskForm handleSubmit={() => {}} initialValues={task} />
+        <TaskForm handleSubmit={(task) => {handleEdit(task);handleClose()}} initialValues={task} buttonText='Editar' />
       </DialogContent>
     </Dialog>
   );
