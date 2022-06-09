@@ -26,8 +26,8 @@ const AddTaskForm = (props: Props) => {
   return (
     <Box>
       <Container sx={{ py: 10 }} maxWidth='sm'>
-        <Typography>O que você vai fazer?</Typography>
         <Paper elevation={10} sx={{ p: 4 }} >
+          <Typography variant='h6'>Adicionar tarefa</Typography>
           <TaskForm handleSubmit={handleSubmit} initialValues={taskInitialValues} buttonText='Adicionar' />
         </Paper>
       </Container>
